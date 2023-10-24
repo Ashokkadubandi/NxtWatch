@@ -1,0 +1,12 @@
+.font {
+  font-size: 38px;
+}
+.scroll {
+  overflow: scroll;
+}
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+.link {
+  text-decoration: none;
+}
