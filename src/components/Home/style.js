@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const VideoFlexCon = styled.div`
   display: flex;
-  background-color: ${props => (props.bgTheme ? '#0f0f0f' : '#f9f9f9')};
+  background-color: ${props => (props.bgTheme ? '#181818' : '#f9f9f9')};
   padding-right: 40px;
 `
 export const VideoCon = styled.div`
@@ -119,7 +119,7 @@ export const NoHead = styled.h1`
 `
 export const NoPara = styled.p`
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 10px;
   @media (min-width: 576px) {
     font-size: 25px;
   }

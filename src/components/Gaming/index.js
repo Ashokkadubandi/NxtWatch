@@ -122,7 +122,7 @@ class Gaming extends Component {
               We are having some trouble to complete your request. Please try
               again
             </NoPara>
-            <Retry>Retry</Retry>
+            <Retry onClick={this.getGamingApiData}>Retry</Retry>
           </NoData>
         )
       }}
@@ -152,7 +152,7 @@ class Gaming extends Component {
           return (
             <>
               <Header />
-              <VideoFlexCon bgTheme={theme}>
+              <VideoFlexCon bgTheme={theme} data-testid="gaming">
                 <HeadControls />
                 <VideoCon>
                   <HeadCon bgTheme={theme}>

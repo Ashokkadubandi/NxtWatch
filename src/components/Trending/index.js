@@ -114,7 +114,7 @@ class Trending extends Component {
                     className="link"
                     onClick={changeIconColor}
                   >
-                    <List key={id}>
+                    <List key={each.id}>
                       <VideoImage src={thumbNail} alt="nail" />
                       <TextCon>
                         <Title bgTheme={theme}>{title}</Title>
@@ -152,7 +152,7 @@ class Trending extends Component {
               We are having some trouble to complete your request. Please try
               again
             </NoPara>
-            <Retry>Retry</Retry>
+            <Retry onClick={this.getTrendingApi}>Retry</Retry>
           </NoData>
         )
       }}
@@ -185,7 +185,7 @@ class Trending extends Component {
           return (
             <>
               <Header />
-              <VideoFlexCon bgTheme={theme}>
+              <VideoFlexCon bgTheme={theme} data-testid="trending">
                 <HeadControls />
                 <VideoCon>
                   <HeadCon bgTheme={theme}>

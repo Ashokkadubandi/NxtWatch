@@ -36,7 +36,7 @@ export const ContactSection = styled.div`
   flex-direction: column;
   color: ${props => (props.bgTheme ? '#f9f9f9' : '#181818')};
 `
-export const Contact = styled.h1`
+export const Contact = styled.p`
   font-family: roboto;
   font-size: 20px;
   font-weight: 500;

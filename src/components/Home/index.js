@@ -98,9 +98,9 @@ class Home extends Component {
             />
             <NoHead bgTheme={theme}>No Search results found</NoHead>
             <NoPara bgTheme={theme}>
-              Try different keywords or remove search filter
+              Try different key words or remove search filter
             </NoPara>
-            <Retry>Retry</Retry>
+            <Retry onClick={this.renderApiCall}>Retry</Retry>
           </NoData>
         )
       }}
@@ -117,13 +117,13 @@ class Home extends Component {
 
         return (
           <NoData>
-            <NoImage src={ErrorImage} alt="no videos" />
+            <NoImage src={ErrorImage} alt="failure view" />
             <NoHead bgTheme={theme}>Oops! Something Went Wrong</NoHead>
             <NoPara bgTheme={theme}>
               We are having some trouble to complete your request. Please try
               again
             </NoPara>
-            <Retry>Retry</Retry>
+            <Retry onClick={this.renderApiCall}>Retry</Retry>
           </NoData>
         )
       }}
@@ -150,18 +150,22 @@ class Home extends Component {
     return (
       <>
         {Banner === true && (
-          <BannerContainer>
+          <BannerContainer data-testid="banner">
             <BannerContent>
               <BanLogo
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                alt="website logo"
+                alt="nxt watch logo"
               />
               <PremiumAlert>
                 Buy Nxt Watch Premium Prepaid plans with UPI
               </PremiumAlert>
               <BanButton type="button">GET IT NOW</BanButton>
             </BannerContent>
-            <CloseBtn type="button" onClick={this.closeBanner}>
+            <CloseBtn
+              type="button"
+              onClick={this.closeBanner}
+              data-testid="close"
+            >
               <AiOutlineClose />
             </CloseBtn>
           </BannerContainer>
@@ -203,7 +207,7 @@ class Home extends Component {
           return (
             <>
               <Header />
-              <VideoFlexCon bgTheme={theme}>
+              <VideoFlexCon bgTheme={theme} data-testid="home">
                 <HeadControl />
                 <VideoCon>
                   {this.renderBanner()}
@@ -214,7 +218,11 @@ class Home extends Component {
                         placeholder="Search"
                         onChange={this.changeVideo}
                       />
-                      <SearchBtn type="button" onClick={this.renderApiCall}>
+                      <SearchBtn
+                        type="button"
+                        onClick={this.renderApiCall}
+                        data-testid="searchButton"
+                      >
                         <BsSearch />
                       </SearchBtn>
                     </SearchCon>

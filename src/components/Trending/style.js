@@ -126,7 +126,7 @@ export const NoHead = styled.h1`
 `
 export const NoPara = styled.p`
   font-family: Roboto;
-  font-size: 15px;
+  font-size: 10px;
   @media (min-width: 576px) {
     font-size: 25px;
   }

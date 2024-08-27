@@ -16,7 +16,12 @@ import {
 } from './style'
 
 class Login extends Component {
-  state = {username: '', password: '', errorMsg: '', check: false}
+  state = {
+    username: 'rahul',
+    password: 'rahul@2021',
+    errorMsg: '',
+    check: false,
+  }
 
   onchangeUsername = event => {
     this.setState({username: event.target.value})

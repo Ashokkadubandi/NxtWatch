@@ -24,6 +24,13 @@ import {
   LoaderCon,
   ParaText,
   Dot,
+  Horizont,
+  BottomTextCon,
+  Logo,
+  ChannelName,
+  Subscribers,
+  AboutVideo,
+  TextBottom,
 } from './style'
 
 const apiConstants = {
@@ -66,6 +73,7 @@ class VideoDetail extends Component {
         channel: {
           name: object.channel.name,
           profileUrl: object.channel.profile_image_url,
+          subscribers: object.channel.subscriber_count,
         },
         description: object.description,
         id: object.id,
@@ -75,10 +83,9 @@ class VideoDetail extends Component {
         videoUrl: object.video_url,
         viewCount: object.view_count,
       }
-      console.log(updatedData)
       this.setState({videoDetail: updatedData, apiStatus: apiConstants.success})
     } else if (response.status === 401) {
-      console.log('knskdvkl')
+      console.log('error')
     }
   }
 
@@ -106,7 +113,15 @@ class VideoDetail extends Component {
 
   renderVideoApiSuccessView = () => {
     const {videoDetail, like, dislike} = this.state
-    const {videoUrl, title, publishedAt, viewCount, id} = videoDetail
+    const {name, profileUrl, subscribers} = videoDetail.channel
+    const {
+      videoUrl,
+      title,
+      publishedAt,
+      viewCount,
+      id,
+      description,
+    } = videoDetail
     const DomUrl = videoUrl.replace('https', 'http')
     const ago = formatDistanceToNow(new Date(publishedAt))
     const agoPublished = ago.split(' ')
@@ -116,11 +131,11 @@ class VideoDetail extends Component {
       <NxtWatch.Consumer>
         {value => {
           const {theme, addVideoDetails, removeVideoDetail, savedList} = value
-          const isLike = like ? '#3b82f6' : ''
-          const isDislike = dislike ? '#3b82f6' : ''
+          const isLike = like ? '#2563eb' : ''
+          const isDislike = dislike ? '#2563eb' : ''
           const isSaved = savedList.find(each => each.id === id)
           const saveText = isSaved === undefined ? 'Save' : 'Saved'
-          const saveColor = isSaved === undefined ? '' : '#3b82f6'
+          const saveColor = isSaved === undefined ? '' : '#2563eb'
           const addVideos = () => {
             console.log(isSaved)
             if (isSaved !== undefined) {
@@ -147,19 +162,30 @@ class VideoDetail extends Component {
                 </DurationContainer>
                 <LikesContainer>
                   <LikedButton onClick={this.changeLike}>
-                    <BiLike color={isLike} size="30px" />
+                    <BiLike color={isLike} size="25px" />
                     <ParaText color={isLike}>Like</ParaText>
                   </LikedButton>
                   <LikedButton onClick={this.changeDislike}>
-                    <AiOutlineDislike color={isDislike} size="30px" />
+                    <AiOutlineDislike color={isDislike} size="25px" />
                     <ParaText color={isDislike}>Dislike</ParaText>
                   </LikedButton>
                   <LikedButton onClick={addVideos}>
-                    <MdPlaylistAdd color={saveColor} size="30px" />
+                    <MdPlaylistAdd color={saveColor} size="25px" />
                     <ParaText color={saveColor}>{saveText}</ParaText>
                   </LikedButton>
                 </LikesContainer>
               </StatusCon>
+              <Horizont bgTheme={theme} />
+              <BottomTextCon>
+                <Logo src={profileUrl} alt="channel logo" />
+                <TextBottom>
+                  <ChannelName bgTheme={theme}>{name}</ChannelName>
+                  <Subscribers bgTheme={theme}>
+                    {subscribers} subscribers
+                  </Subscribers>
+                  <AboutVideo bgTheme={theme}>{description}</AboutVideo>
+                </TextBottom>
+              </BottomTextCon>
             </VideoCon>
           )
         }}
@@ -189,7 +215,7 @@ class VideoDetail extends Component {
           return (
             <>
               <Header />
-              <VideoFlexCon bgTheme={theme}>
+              <VideoFlexCon bgTheme={theme} data-testid="videoItemDetails">
                 <HeadControls />
                 {this.renderApiStatusView()}
               </VideoFlexCon>

@@ -8,11 +8,12 @@ import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import VideoDetail from './components/VideoDetail'
 import Saved from './components/Saved'
+import NotFound from './components/NotFound'
 import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {theme: false, themeActive: '', savedList: []}
+  state = {theme: false, themeActive: '', savedList: [], hide: false}
 
   modifyThemeColor = () => {
     this.setState(pre => ({
@@ -34,8 +35,12 @@ class App extends Component {
     this.setState({savedList: filteredList})
   }
 
+  changeBar = () => {
+    this.setState(pre => ({hide: !pre.hide}))
+  }
+
   render() {
-    const {theme, themeActive, savedList} = this.state
+    const {theme, themeActive, savedList, hide} = this.state
     console.log(savedList)
 
     return (
@@ -44,10 +49,12 @@ class App extends Component {
           theme,
           themeActive,
           savedList,
+          hide,
           changeTheme: this.modifyThemeColor,
           changeIcon: this.changeIconColor,
           removeVideoDetail: this.removeVideoDetail,
           addVideoDetails: this.addVideoDetail,
+          changeBar: this.changeBar,
         }}
       >
         <Switch>
@@ -57,6 +64,7 @@ class App extends Component {
           <ProtectedRoute exact path="/gaming" component={Gaming} />
           <ProtectedRoute exact path="/videos/:id" component={VideoDetail} />
           <ProtectedRoute exact path="/saved-videos" component={Saved} />
+          <Route component={NotFound} />
         </Switch>
       </NxtWatch.Provider>
     )

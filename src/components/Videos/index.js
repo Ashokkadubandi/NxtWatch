@@ -33,9 +33,9 @@ const Videos = props => {
         return (
           <Link to={`/videos/${id}`} className="link">
             <VideoList>
-              <Image src={thumbNail} alt="vid" />
+              <Image src={thumbNail} alt="video thumbnail" />
               <VideoContent>
-                <AccountLogo src={profileUrl} alt="pro" />
+                <AccountLogo src={profileUrl} alt="channel logo" />
                 <VideoDescCon>
                   <VideoDescription bgTheme={theme}>{title}</VideoDescription>
                   <Title>{name}</Title>

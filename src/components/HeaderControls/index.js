@@ -53,7 +53,7 @@ const HeadControls = () => (
                 <IoLogoGameControllerB
                   color={themeActive === 'GAME' ? icon : ''}
                 />
-                <ListName>Game</ListName>
+                <ListName>Gaming</ListName>
               </List>
             </Link>
             <Link
@@ -63,7 +63,7 @@ const HeadControls = () => (
             >
               <List bgTheme={theme}>
                 <MdPlaylistAdd color={themeActive === 'SAVED' ? icon : ''} />
-                <ListName>Saved</ListName>
+                <ListName>Saved videos</ListName>
               </List>
             </Link>
           </OrderList>
